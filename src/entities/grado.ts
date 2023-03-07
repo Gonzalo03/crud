@@ -1,17 +1,21 @@
+import { ResumenEvaluacion } from './resumen_evaluacion';
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     BaseEntity,
-    CreateDateColumn,
-    UpdateDateColumn,
+    OneToMany,
 } from "typeorm";
 
 @Entity()
 export class Grado extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id_grado: number;
+    @PrimaryGeneratedColumn({name: 'id_grado'})
+    id: number;
 
-    @Column({})
-    nombre_grado: string;
+    @Column({name: 'nombre_grado'})
+    nombre: string;
+
+    @OneToMany(()=>ResumenEvaluacion, resumenEvaluacion=>resumenEvaluacion.grado)
+    resumenes: ResumenEvaluacion[]
+
 }

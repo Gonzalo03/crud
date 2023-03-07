@@ -1,19 +1,28 @@
+import { Asignatura } from './asignaturas';
+import { ResumenEvaluacion } from './resumen_evaluacion';
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     BaseEntity,
-    CreateDateColumn,
-    UpdateDateColumn,
+    ManyToOne,
+    JoinColumn,
+    OneToMany,
 } from "typeorm";
 
-@Entity()
-export class Competencias extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id_competencia: number;
+@Entity({name: 'competencias'})
+export class Competencia extends BaseEntity {
+    @PrimaryGeneratedColumn({name: 'id_competencia'})
+    id: number;
 
-    @Column({})
+    @Column()
     nombre: string;
-    @Column({})
-    id_asignatura: number;
+
+
+    @ManyToOne(()=>Asignatura, asignatura=>asignatura.competencias)
+    @JoinColumn({name: 'id_asignatura'})
+    asignatura: Asignatura;
+
+    @OneToMany(()=>ResumenEvaluacion, resumenEvaluacion=>resumenEvaluacion.competencia)
+    resumenes: ResumenEvaluacion[]
 }

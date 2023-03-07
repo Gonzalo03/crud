@@ -1,20 +1,23 @@
+import { ResumenEvaluacion } from './resumen_evaluacion';
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     BaseEntity,
-    CreateDateColumn,
-    UpdateDateColumn,
+    OneToMany,
 } from "typeorm";
 
-@Entity()
-export class Nivel_logro extends BaseEntity {
-    @PrimaryGeneratedColumn()
+@Entity({name: 'nivel_logro'})
+export class NivelLogro extends BaseEntity {
+    @PrimaryGeneratedColumn({name: 'id_nivel'})
     id_nivel: number;
 
-    @Column({})
+    @Column()
     nombre: string;
     
-    @Column({})
-    letra_nombre: string;
+    @Column({name: 'letra_nombre'})
+    letraNombre: string;
+
+    @OneToMany(()=>ResumenEvaluacion, resumenEvaluacion=>resumenEvaluacion.nivel)
+    resumenes: ResumenEvaluacion[]
 }

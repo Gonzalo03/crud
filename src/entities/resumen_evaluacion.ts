@@ -1,37 +1,48 @@
+import { Competencia } from './competencias';
+import { NivelLogro } from './nivel.logro';
+import { Grado } from './grado';
+import { Asignatura } from './asignaturas';
 import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
     BaseEntity,
     CreateDateColumn,
-    UpdateDateColumn,
+    ManyToOne,
+    JoinColumn,
 } from "typeorm";
 
-@Entity()
-export class Resumen_evaluacion extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id_resumen: number;
+@Entity({name: 'resumen_evaluacion'})
+export class ResumenEvaluacion extends BaseEntity {
+    @PrimaryGeneratedColumn({name: 'id_resumen'})
+    id: number;
 
-    @Column({})
-    id_competencia: number;
+    @ManyToOne(()=>Competencia, competencia=>competencia.resumenes)
+    @JoinColumn({name: 'id_competencia'})
+    competencia: Competencia;
 
-    @Column({})
-    id_nivel: number;
+    @ManyToOne(()=>NivelLogro, nivelLogro=>nivelLogro.resumenes)
+    @JoinColumn({name: 'id_nivel'})
+    nivel: NivelLogro;
 
-    @Column({})
+    @Column()
     porcentaje: number;
 
     @Column({type: 'float'})
     promedio: number;
 
-    @Column({})
-    id_grado: number;
+
+    @ManyToOne(()=>Grado, grado=>grado.resumenes)
+    @JoinColumn({name: 'id_grado'})
+    grado: Grado;
+
+    @ManyToOne(()=>Asignatura, asignatura=>asignatura.resumenes)
+    @JoinColumn({name: 'id_asignatura'})
+    asignatura: Asignatura;
+
     
-    @Column({})
-    id_asignatura: number;
-    
-    @Column({})
-    cod_mod_ie: number;
+    @Column({name: 'cod_mod_ie'})
+    codMod: number;
 
     @CreateDateColumn()
     fecha: Date;

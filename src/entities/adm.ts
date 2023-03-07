@@ -9,14 +9,14 @@ import {
 
 @Entity()
 export class Administrador extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id_admin: number;
+    @PrimaryGeneratedColumn({name: 'id_admin'})
+    id: number;
 
     @Column({})
-    nombres: string;
+    nombre: string;
     
     @Column({})
-    apellidos: string;
+    apellido: string;
 
     @Column({})
     contrasena: string;
@@ -30,8 +30,8 @@ export class Administrador extends BaseEntity {
     @Column({})
     celular: number;
 
-    @Column()
-    cod_mod_ie: number;
+    @Column({name: 'cod_mod_ie'})
+    codMod: number;
     
     @Column({})
     codigorol: number;

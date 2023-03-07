@@ -4,39 +4,38 @@ import {
     PrimaryGeneratedColumn,
     BaseEntity,
     CreateDateColumn,
-    UpdateDateColumn,
 } from "typeorm";
 
 @Entity()
 export class Institucion_educativa extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id_ie: number;
+    @PrimaryGeneratedColumn({name: 'id_ie'})
+    id: number;
 
-    @Column()
-    cod_mod_ie: number;
+    @Column({name: 'cod_mod_ie'})
+    codMod: number;
 
 
-    @Column({})
-    nombre_ie: string;
+    @Column({name: 'nombre_ie'})
+    nombre: string;
     
-    @Column({})
-    nivel_ie: string;
+    @Column({name: 'nivel_ie'})
+    nivel: string;
     
-    @Column({})
-    departamento_ie: string;
+    @Column({name: 'departamento_ie'})
+    departamento: string;
     
-    @Column({})
-    provincia_ie: string;
+    @Column({name: 'provincia_ie'})
+    provincia: string;
 
-    @Column({})
-    distrito_ie: string;
+    @Column({name: 'distrito_ie'})
+    distrito: string;
 
-    @Column({})
-    estado_ie: number;
+    @Column({name: 'estado_ie'})
+    estado: number;
     
     @CreateDateColumn()
     fecharegistro: Date;
     
-    @Column({})
-    estado_subido_excel: number;
+    @Column({name: 'estado_subido_excel'})
+    estadoSubidoExcel: number;
 }

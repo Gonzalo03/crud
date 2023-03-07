@@ -9,13 +9,13 @@ import {
 
 @Entity()
 export class Rol extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id_rol: number;
+    @PrimaryGeneratedColumn({name: 'id_rol'})
+    id: number;
 
-    @Column()
-    codigorol: number;
+    @Column({name: 'codigorol'})
+    codigo: number;
 
 
-    @Column({})
-    nombre_rol: string;
+    @Column({name: 'nombre_rol'})
+    nombre: string;
 }
